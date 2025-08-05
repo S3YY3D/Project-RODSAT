@@ -8,12 +8,24 @@ It uses **Selenium** to handle dynamic content and extract key data like reviewe
 ## 📁 Project Structure
 
 .
+your_project/
+│
+├── src/
+│   ├── main.py
+│   ├── scraper.py
+│   ├── date_convertor.py
+│   ├── date_sorter.py
+│   ├── blanks.py
+│   ├── justpizza.py
+│   ├── daily_score.py
+│
 ├── data/
-│ └── raw/
-│ └── snappfood_reviews.csv # Scraped reviews saved here
-├── scraper.py # Scraping logic (as a function)
-├── main.py # Entry point to run the scraper
-└── README.md # Project documentation
+│   ├── raw/
+│   ├── sorted/
+│   ├── daily/
+│
+├── requirements.txt
+└── README.md
 
 ---
 
