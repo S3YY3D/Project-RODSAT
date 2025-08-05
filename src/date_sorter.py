@@ -22,3 +22,5 @@ def sort_reviews_by_date(input_csv_path, output_csv_path):
         writer = csv.DictWriter(outfile, fieldnames=reader.fieldnames)
         writer.writeheader()
         writer.writerows(data)
+
+    print(f"✅ All steps completed. Sorted data saved to: {output_csv_path}")
