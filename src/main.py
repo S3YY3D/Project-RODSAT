@@ -1,23 +1,8 @@
 import os
-import csv
 from scraper import scrape_reviews
 from date_convertor import convert_jalali_dates_in_csv
 from date_sorter import sort_reviews_by_date
-
-def fix_blank_ratings_in_csv(input_csv_path, output_csv_path):
-    with open(input_csv_path, "r", encoding="utf-8-sig") as infile:
-        reader = csv.DictReader(infile)
-        data = list(reader)
-
-    for row in data:
-        if not row.get("rating") or row["rating"].strip() == "":
-            row["rating"] = "1"
-
-    os.makedirs(os.path.dirname(output_csv_path), exist_ok=True)
-    with open(output_csv_path, "w", encoding="utf-8-sig", newline="") as outfile:
-        writer = csv.DictWriter(outfile, fieldnames=reader.fieldnames)
-        writer.writeheader()
-        writer.writerows(data)
+from blanks import fix_blank_ratings_in_csv
 
 
 if __name__ == "__main__":
@@ -32,10 +17,10 @@ if __name__ == "__main__":
     sorted_file = os.path.join(sorted_dir, "snappfood_reviews_sorted.csv")
 
     # Step 1: Scrape the data and save raw CSV
-    # scrape_reviews(url, raw_file)
+    scrape_reviews(url, raw_file)
 
     # Step 2: Convert Jalali dates to Gregorian and save new CSV
-    # convert_jalali_dates_in_csv(raw_file, gregorian_date_file)
+    convert_jalali_dates_in_csv(raw_file, gregorian_date_file)
 
     # Step 3: Fix blank ratings in the converted CSV
     fix_blank_ratings_in_csv(gregorian_date_file, fixed_rating_file)
